@@ -56,7 +56,7 @@ async function searchChunks(keywords: string[], question: string) {
       .ilike('content', `%${stem}%`)
 
     for (const chunk of (kwChunks || [])) {
-      const docName = (chunk.documents as { name: string } | null)?.name || 'Dokument'
+      const docName = (chunk.documents as unknown as { name: string } | null)?.name || 'Dokument'
       const existing = scores.get(chunk.id)
       if (existing) {
         existing.score += 1
